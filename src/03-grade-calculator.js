@@ -26,4 +26,31 @@
  */
 export function calculateGrade(score, hasExtraCredit) {
   // Your code here
+  if (score < 0 || score > 100) {
+    return "INVALID";
+  }
+  let scoreCalculated = hasExtraCredit ? 5 : 0;
+  scoreCalculated += score;
+
+  if (scoreCalculated > 100) {
+    scoreCalculated = 100;
+  }
+  if (scoreCalculated >= 90) {
+    return "A";
+  } else if (scoreCalculated >= 80) {
+    return "B";
+  } else if (scoreCalculated >= 70) {
+    return "C";
+  } else if (scoreCalculated >= 60) {
+    return "D";
+  } else {
+    return "F";
+  }
+
+  //   Grading Scale:
+  //  *   - 90–100 → "A"
+  //  *   - 80–89  → "B"
+  //  *   - 70–79  → "C"
+  //  *   - 60–69  → "D"
+  //  *   - 0–59   → "F"
 }

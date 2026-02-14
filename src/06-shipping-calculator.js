@@ -30,4 +30,63 @@
  */
 export function calculateShipping(weight, country, orderTotal) {
   // Your code here
+  if (weight <= 0) {
+    return -1;
+  }
+  if (orderTotal < 0) {
+    return -1;
+  }
+  let shippingCost = 0;
+  if (country === "US") {
+    if (orderTotal > 50) {
+      shippingCost = 0;
+      return shippingCost;
+    } else {
+      if (weight <= 1) {
+        shippingCost = 5;
+        return shippingCost;
+      } else if (weight <= 5) {
+        shippingCost = 10;
+        return shippingCost;
+      } else {
+        shippingCost = 15;
+        return shippingCost;
+      }
+    }
+  } else {
+    if (orderTotal > 100) {
+      shippingCost = 0;
+      return shippingCost;
+    } else {
+      if (weight <= 1) {
+        shippingCost = 15;
+        return shippingCost;
+      } else if (weight <= 5) {
+        shippingCost = 25;
+        return shippingCost;
+      } else {
+        shippingCost = 40;
+        return shippingCost;
+      }
+    }
+  }
 }
+
+// //AI Suggestion code
+
+// /**
+//  * 📦 ShopSwift Shipping Calculator
+//  * (Refactored: flatter structure, no nesting, reusable logic)
+//  */
+// export function calculateShipping(weight, country, orderTotal) {
+//   if (weight <= 0 || orderTotal < 0) return -1;  // Guard: invalid input
+
+//   const isDomestic = country === 'US';
+//   const freeThreshold = isDomestic ? 50 : 100;
+//   if (orderTotal > freeThreshold) return 0;  // Free shipping check
+
+//   // Weight tiers: [up to 1kg, up to 5kg, over 5kg]
+//   const tiers = isDomestic ? [5, 10, 15] : [15, 25, 40];
+//   const tierIndex = weight <= 1 ? 0 : weight <= 5 ? 1 : 2;
+//   return tiers[tierIndex];
+// }
